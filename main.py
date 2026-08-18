@@ -16,7 +16,7 @@ import os
 # so you remember to set it if you forget.
 TOKEN = os.environ.get("DISCORD_TOKEN", "YOUR_DISCORD_BOT_TOKEN")
 GUILD_ID = 1534966756089659554
-VERIFIED_ROLE_NAME = "Verified"
+VERIFIED_ROLE_ID = 1535004398067912704
 VERIFICATION_TIMEOUT = 300  # seconds (5 minutes)
 
 # Brand colors / footer text — tweak to taste
@@ -240,20 +240,15 @@ class VerifyButton(discord.ui.View):
             )
             return
 
-        role = discord.utils.get(guild.roles, name=VERIFIED_ROLE_NAME)
+        role = guild.get_role(VERIFIED_ROLE_ID)
 
         if role is None:
-            try:
-                role = await guild.create_role(
-                    name=VERIFIED_ROLE_NAME,
-                    reason="Roblox verification role"
-                )
-            except discord.Forbidden:
-                await interaction.followup.send(
-                    "❌ I don't have permission to create the Verified role.",
-                    ephemeral=True
-                )
-                return
+            await interaction.followup.send(
+                "❌ The verified role couldn't be found on this server. "
+                "Double-check VERIFIED_ROLE_ID in the bot config.",
+                ephemeral=True
+            )
+            return
 
         try:
             await member.add_roles(role)
