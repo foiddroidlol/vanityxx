@@ -15,7 +15,7 @@ import os
 # Reads from Railway's Variables tab. Falls back to the placeholder locally
 # so you remember to set it if you forget.
 TOKEN = os.environ.get("DISCORD_TOKEN", "YOUR_DISCORD_BOT_TOKEN")
-GUILD_ID = 123456789012345678
+GUILD_ID = 1534966756089659554
 VERIFIED_ROLE_NAME = "Verified"
 VERIFICATION_TIMEOUT = 300  # seconds (5 minutes)
 
