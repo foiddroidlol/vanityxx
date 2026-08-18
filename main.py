@@ -431,6 +431,27 @@ async def vanishk(interaction: discord.Interaction, username: str):
 
 
 # =========================
+# SLASH COMMAND: /verify
+# =========================
+
+@bot.tree.command(
+    name="verify",
+    description="Verify ownership of a Roblox account."
+)
+@app_commands.describe(username="Your Roblox username")
+async def verify_slash(interaction: discord.Interaction, username: str):
+    await interaction.response.defer(ephemeral=True)
+
+    embed, view, error = await start_verification(interaction.user.id, username)
+
+    if error:
+        await interaction.followup.send(error, ephemeral=True)
+        return
+
+    await interaction.followup.send(embed=embed, view=view, ephemeral=True)
+
+
+# =========================
 # PREFIX COMMAND: ,verify
 # =========================
 
