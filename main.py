@@ -6,12 +6,15 @@ import secrets
 import string
 import asyncio
 import time
+import os
 
 # =========================
 # CONFIG
 # =========================
 
-TOKEN = "YOUR_DISCORD_BOT_TOKEN"
+# Reads from Railway's Variables tab. Falls back to the placeholder locally
+# so you remember to set it if you forget.
+TOKEN = os.environ.get("DISCORD_TOKEN", "YOUR_DISCORD_BOT_TOKEN")
 GUILD_ID = 123456789012345678
 VERIFIED_ROLE_NAME = "Verified"
 VERIFICATION_TIMEOUT = 300  # seconds (5 minutes)
@@ -478,4 +481,4 @@ async def on_ready():
 # RUN
 # =========================
 
-bot.run(TOKEN)
+bot.run(MTUzOTIxNjQ3NzI1NTkwMTI3Ng.GMDF4e.k_yU6Zgq5LZFqxuqJcM4Htu_P4bZpJhUZtSJQk)
